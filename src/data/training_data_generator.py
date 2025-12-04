@@ -10,6 +10,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../.
 
 from src.models.order import Order
 from src.models.facility import Facility
+from src.data.sample_data import create_sample_facilities
 
 
 class TrainingDataGenerator:
@@ -69,26 +70,13 @@ class TrainingDataGenerator:
         )
 
     def generate_facilities(self) -> List[Facility]:
-        """다양한 설비 생성"""
-        return [
-            # 고속 로봇들
-            Facility("FAC-R1", "고속 로봇 A", "robot", 20.0, 1.0, True, 4, ["A", "B"]),
-            Facility("FAC-R2", "고속 로봇 B", "robot", 15.0, 0.8, True, 4, ["B", "C"]),
+        """
+        실제 운영 환경과 동일한 설비 사용
 
-            # 컨베이어 벨트들
-            Facility("FAC-C1", "소형 컨베이어", "conveyor", 30.0, 1.5, False, 3, ["A"]),
-            Facility("FAC-C2", "중형 컨베이어", "conveyor", 50.0, 2.5, False, 3, ["A", "B", "C"]),
-            Facility("FAC-C3", "대형 컨베이어", "conveyor", 100.0, 5.0, False, 2, ["C"]),
-
-            # 분류기들
-            Facility("FAC-S1", "소형 분류기", "sorter", 10.0, 0.5, True, 4, ["A"]),
-            Facility("FAC-S2", "중형 분류기", "sorter", 25.0, 1.2, True, 3, ["A", "B", "C"]),
-            Facility("FAC-S3", "대형 분류기", "sorter", 40.0, 2.0, True, 3, ["B", "C"]),
-
-            # 수동 처리
-            Facility("FAC-M1", "수동 처리 A", "manual", 50.0, 2.0, True, 1, ["A", "B", "C"]),
-            Facility("FAC-M2", "수동 처리 B", "manual", 30.0, 1.5, True, 1, ["A", "B"]),
-        ]
+        중요: ML 모델은 학습할 때 사용한 설비와 동일한 설비로 예측해야 합니다.
+        따라서 sample_data.py의 설비를 사용합니다.
+        """
+        return create_sample_facilities()
 
     def simulate_expert_decision(self, order: Order, facilities: List[Facility]) -> str:
         """
