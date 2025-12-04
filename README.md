@@ -16,7 +16,7 @@
 
 ## 🎯 소개
 
-이 프로젝트는 **파이썬 초보자**도 쉽게 이해하고 사용할 수 있도록 설계된 물류센터 자동화 시스템입니다.
+이 프로젝트는 **파이썬 초보자**와 **.NET 개발자**도 쉽게 이해하고 사용할 수 있도록 설계된 물류센터 자동화 시스템입니다.
 
 ### 해결하는 문제
 
@@ -25,7 +25,9 @@
 - 깨지기 쉬운 물품은 어디로 보내야 안전할까?
 - 설비 용량을 효율적으로 활용하려면?
 
-### AI 매칭 방식
+### 두 가지 매칭 엔진
+
+#### 📐 규칙 기반 엔진 (Rule-based)
 
 여러 요소를 점수화하여 최적의 설비를 선택합니다:
 
@@ -35,33 +37,70 @@
 4. **목적지 구역** (15%) - 목적지까지 직접 연결되는가?
 5. **설비 유형** (15%) - 주문 특성에 맞는 설비 유형인가?
 
-> 가중치는 필요에 따라 조정 가능합니다!
+- ✅ 투명하고 예측 가능
+- ✅ 빠른 실행 속도
+- ✅ 설명 가능한 의사결정
+
+#### 🤖 머신러닝 엔진 (ML-based)
+
+과거 운영 데이터를 학습하여 패턴을 자동으로 발견합니다:
+
+- ✅ **데이터 학습**: 과거 매칭 데이터에서 패턴 학습
+- ✅ **자동 최적화**: 비즈니스 환경 변화에 적응
+- ✅ **높은 정확도**: 복잡한 패턴 인식
+- ✅ **특성 중요도**: 어떤 요소가 중요한지 자동 분석
+
+**Random Forest Classifier** 사용 (scikit-learn)
 
 ## ✨ 주요 기능
 
+### 규칙 기반 엔진
 - ✅ **자동 매칭**: 주문에 가장 적합한 설비 자동 선택
 - ✅ **순위 매기기**: 여러 후보 설비를 점수순으로 정렬
 - ✅ **일괄 처리**: 여러 주문을 한번에 처리
 - ✅ **커스텀 가중치**: 상황에 맞게 매칭 기준 조정
+
+### 머신러닝 엔진 🆕
+- ✅ **데이터 학습**: 과거 매칭 데이터로 모델 훈련
+- ✅ **예측 추론**: 학습된 패턴으로 최적 설비 예측
+- ✅ **모델 평가**: 정확도 및 성능 측정
+- ✅ **특성 분석**: 중요한 요소 자동 발견
+- ✅ **모델 저장/로드**: 한번 학습 후 재사용
+
+### 공통
 - ✅ **검증 로직**: 잘못된 데이터 자동 차단
 - ✅ **확장 가능**: 새로운 속성 추가 용이
+- ✅ **완전한 테스트**: 27개 자동화 테스트
 
 ## 📁 프로젝트 구조
 
 ```
 TrainingAI/
-├── README.md                    # 이 파일
-├── requirements.txt             # 필요한 패키지 목록
-├── src/                         # 소스 코드
-│   ├── models/                  # 데이터 모델
-│   │   ├── order.py            # 주문 클래스
-│   │   └── facility.py         # 설비 클래스
-│   ├── engine/                  # AI 엔진
-│   │   └── matcher.py          # 매칭 알고리즘
-│   └── data/                    # 샘플 데이터
-│       └── sample_data.py      # 예제 데이터 생성
-└── examples/                    # 사용 예제
-    └── basic_matching.py       # 기본 사용법
+├── README.md                         # 이 파일
+├── PRACTICE_GUIDE.md                 # 실습 가이드
+├── requirements.txt                  # 필요한 패키지 (numpy, scikit-learn)
+├── src/                              # 소스 코드
+│   ├── models/                       # 데이터 모델
+│   │   ├── order.py                 # 주문 클래스
+│   │   └── facility.py              # 설비 클래스
+│   ├── engine/                       # 매칭 엔진
+│   │   ├── matcher.py               # 규칙 기반 엔진
+│   │   └── ml_matcher.py            # 머신러닝 엔진 🆕
+│   └── data/                         # 데이터 생성
+│       ├── sample_data.py           # 샘플 데이터
+│       └── training_data_generator.py  # ML 학습 데이터 생성기 🆕
+├── examples/                         # 사용 예제
+│   ├── basic_matching.py            # 규칙 기반 예제
+│   ├── ml_matching.py               # 머신러닝 예제 🆕
+│   ├── compare_engines.py           # 두 엔진 비교 🆕
+│   └── interactive_practice.py      # 대화형 실습
+├── exercises/                        # 단계별 연습 문제
+│   ├── beginner_exercises.py
+│   ├── intermediate_exercises.py
+│   └── advanced_exercises.py
+└── tests/                            # 자동화 테스트
+    ├── test_basic.py                # 기본 테스트 (14개)
+    └── test_ml.py                   # ML 테스트 (13개) 🆕
 ```
 
 ## 🚀 시작하기
@@ -69,7 +108,7 @@ TrainingAI/
 ### 1. 필수 요구사항
 
 - Python 3.7 이상
-- 현재는 외부 패키지 불필요 (표준 라이브러리만 사용)
+- **머신러닝 엔진 사용 시**: numpy, scikit-learn, joblib
 
 ### 2. 설치
 
@@ -77,23 +116,33 @@ TrainingAI/
 # 저장소 클론 (이미 되어있다면 생략)
 cd TrainingAI
 
-# (선택) 가상환경 생성
+# (선택) 가상환경 생성 (권장)
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 
-# 의존성 설치 (현재는 없음)
+# 의존성 설치
 pip install -r requirements.txt
 ```
+
+> **참고**: 규칙 기반 엔진만 사용한다면 외부 패키지 불필요합니다.
+> ML 엔진을 사용하려면 numpy와 scikit-learn이 필요합니다.
 
 ### 3. 예제 실행
 
 ```bash
+# 규칙 기반 엔진 예제
 python examples/basic_matching.py
+
+# 머신러닝 엔진 예제 🆕
+python examples/ml_matching.py
+
+# 두 엔진 비교 🆕
+python examples/compare_engines.py
 ```
 
 ## 📖 사용 방법
 
-### 기본 사용법
+### 규칙 기반 엔진 사용법
 
 ```python
 from src.models.order import Order
@@ -138,6 +187,45 @@ if result:
     print(f"최적 설비: {facility.name}")
     print(f"매칭 점수: {score:.2%}")
 ```
+
+### 머신러닝 엔진 사용법 🆕
+
+```python
+from src.engine.ml_matcher import MLMatcher
+from src.data.training_data_generator import TrainingDataGenerator
+
+# 1. 학습 데이터 생성
+generator = TrainingDataGenerator(seed=42)
+train_orders, train_labels = generator.generate_training_data(1000)
+
+# 2. ML 모델 생성 및 학습
+ml_matcher = MLMatcher(n_estimators=100, random_state=42)
+ml_matcher.train(train_orders, train_labels)
+
+# 3. 새 주문 예측
+order = Order(...)  # 주문 생성
+facilities = generator.generate_facilities()
+
+result = ml_matcher.predict(order, facilities)
+
+if result:
+    facility, confidence = result
+    print(f"예측 설비: {facility.name}")
+    print(f"확신도: {confidence:.2%}")
+
+# 4. 모델 저장 (재사용)
+ml_matcher.save_model("model.pkl")
+
+# 5. 나중에 로드
+new_matcher = MLMatcher()
+new_matcher.load_model("model.pkl")
+```
+
+> **.NET 개발자를 위한 팁**:
+> - `train()` = ML.NET의 `Fit()`
+> - `predict()` = ML.NET의 `Predict()`
+> - `save_model()` = `Model.Save()`
+> - Random Forest = 의사결정나무 앙상블 (배깅)
 
 ## 💡 예제
 
