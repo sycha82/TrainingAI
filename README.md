@@ -10,6 +10,7 @@
 - [시작하기](#시작하기)
 - [사용 방법](#사용-방법)
 - [예제](#예제)
+- [실습 및 테스트](#실습-및-테스트)
 - [커스터마이징](#커스터마이징)
 - [향후 계획](#향후-계획)
 
@@ -173,6 +174,80 @@ python examples/basic_matching.py
   - 설비 유형: robot
   - 매칭 점수: 87.50%
 ```
+
+## 🎓 실습 및 테스트
+
+파이썬 초보자를 위한 다양한 실습 자료가 준비되어 있습니다!
+
+### 📖 실습 가이드
+
+자세한 실습 방법은 [PRACTICE_GUIDE.md](PRACTICE_GUIDE.md)를 참고하세요.
+
+### 1. 인터랙티브 실습
+
+직접 값을 입력하면서 배울 수 있는 대화형 실습:
+
+```bash
+python examples/interactive_practice.py
+```
+
+메뉴에서 선택하여:
+- 나만의 주문 만들기
+- AI 매칭 실행해보기
+- 가중치 커스터마이징
+- 빠른 테스트 실행
+
+### 2. 단계별 연습 문제
+
+#### 초급 (beginner_exercises.py)
+```bash
+python exercises/beginner_exercises.py
+```
+- Order, Facility 객체 생성
+- 기본 메서드 사용법
+- 조건문과 반복문
+
+#### 중급 (intermediate_exercises.py)
+```bash
+python exercises/intermediate_exercises.py
+```
+- FacilityMatcher 사용
+- 최적 설비 찾기
+- 일괄 처리
+- 커스텀 가중치 설정
+
+#### 고급 (advanced_exercises.py)
+```bash
+python exercises/advanced_exercises.py
+```
+- 성능 분석 및 통계
+- 설비 가용성 시뮬레이션
+- 새로운 기능 확장
+- 복잡한 비즈니스 로직
+
+### 3. 자동 테스트
+
+프로그램이 제대로 동작하는지 확인:
+
+```bash
+python tests/test_basic.py
+```
+
+14개의 테스트 케이스가 자동으로 실행됩니다:
+- Order 클래스 테스트
+- Facility 클래스 테스트
+- FacilityMatcher 테스트
+
+### 📚 학습 경로 (추천)
+
+**파이썬 처음이라면:**
+1. 기본 예제 실행 → 2. 인터랙티브 실습 → 3. 초급 연습 문제 → 4. 테스트 실행
+
+**파이썬 기본을 아신다면:**
+1. 기본 예제 확인 → 2. 중급 연습 문제 → 3. 인터랙티브 실습으로 실험
+
+**실전 프로젝트를 원한다면:**
+1. 고급 연습 문제 → 2. 새 기능 추가 → 3. 테스트 작성 → 4. 최적화
 
 ## 🎨 커스터마이징
 
