@@ -160,7 +160,12 @@ def example_5_save_and_load():
     print("예제 5: 모델 저장 및 재사용")
     print("="*80)
 
-    model_path = "/tmp/facility_matcher_model.pkl"
+    # 크로스 플랫폼 경로 (Windows/Linux/Mac 모두 지원)
+    import tempfile
+    temp_dir = tempfile.gettempdir()
+    model_path = os.path.join(temp_dir, "facility_matcher_model.pkl")
+
+    print(f"\n💾 모델 저장 경로: {model_path}")
 
     # 학습 및 저장
     print("\n[1단계] 모델 학습 및 저장")
